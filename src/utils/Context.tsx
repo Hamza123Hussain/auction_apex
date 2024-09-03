@@ -1,6 +1,7 @@
 'use client'
 import { createContext, ReactNode, useEffect, useState } from 'react'
 import { InputValues, UserData } from './SignupInterface'
+import { ProductData } from './ProductInterface'
 
 export const UserContext = createContext<any>(null)
 
@@ -12,7 +13,14 @@ const ContextProvider = ({ children }: { children: ReactNode }) => {
     Name: '',
     Image: null,
   })
-
+  const [productdata, setproductdata] = useState<ProductData>({
+    productName: '',
+    description: '',
+    price: 0,
+    image: null,
+    auctionEndDate: '',
+    status: 'active',
+  })
   const [loading, setLoading] = useState(true) // Start with loading true
 
   const [userData, setUserData] = useState<UserData>(() => {
@@ -49,6 +57,8 @@ const ContextProvider = ({ children }: { children: ReactNode }) => {
         setLoading,
         inputVal,
         setInputVal,
+        productdata,
+        setproductdata,
       }}
     >
       {children}

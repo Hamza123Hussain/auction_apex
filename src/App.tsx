@@ -7,6 +7,7 @@ import Footer from './components/Footer'
 import Login from './components/Auth/Login'
 import Signup from './components/Auth/SignUp'
 import ResetPassword from './components/Auth/ResetPassword'
+import ProductAddForm from './components/Product/CreateProduct'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/Login" element={<Login />} />
           <Route path="/register" element={<Signup />} />
           <Route path="/ResetPass" element={<ResetPassword />} />
+          <Route path="/AddProduct" element={<ProductAddForm />} />
         </Routes>
       </main>
       <Footer />

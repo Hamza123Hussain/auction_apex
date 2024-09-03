@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import LoginTextFields from './LoginFields'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../utils/Context'
+import { LoginUser } from '../../functions/Auth/Login'
 
 const Login = () => {
   const Router = useNavigate()
@@ -9,17 +10,18 @@ const Login = () => {
     useContext(UserContext)
 
   const HandleLogin = async () => {
-    // setLoading(true)
-    // const Data = await LoginUser(inputVal)
-    // if (Data) {
-    //   setUserData(Data)
-    //   setInputVal({
-    //     email: '',
-    //     password: '',
-    //   })
-    //   setLoading(false)
-    //   Router.push('/')
-    // }
+    setLoading(true)
+    const Data = await LoginUser(inputVal)
+    if (Data) {
+      console.log('API HAS RESPONSDED : ', Data)
+      //   setUserData(Data)
+      setInputVal({
+        email: '',
+        password: '',
+      })
+      setLoading(false)
+      //   Router('/')
+    }
   }
 
   //   if (loading) return <Loader />

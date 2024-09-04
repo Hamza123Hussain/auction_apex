@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Activity, Annoyed, Lock, LockOpen } from 'lucide-react'
+import { UserContext } from '../utils/Context'
+import ShowUser from './ShowUser'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
-
+  const { userData } = useContext(UserContext)
   return (
     <nav className="bg-electricBlue text-softWhite py-4 px-6 flex flex-col md:flex-row md:justify-between items-center shadow-lg">
       <div className="flex justify-between w-full md:w-auto">
@@ -42,12 +44,16 @@ const Navbar = () => {
         </li>
       </ul>
       <div className="mt-4 md:mt-0">
-        <a
-          href="/Login"
-          className="bg-brightCoral text-softWhite px-4 py-2 rounded hover:bg-brightRed"
-        >
-          Sign In
-        </a>
+        {!userData._id ? (
+          <a
+            href="/Login"
+            className="bg-brightCoral text-softWhite px-4 py-2 rounded hover:bg-brightRed"
+          >
+            Sign In
+          </a>
+        ) : (
+          <ShowUser />
+        )}
       </div>
     </nav>
   )

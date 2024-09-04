@@ -9,14 +9,12 @@ import ProductAddForm from './components/Product/CreateProduct'
 import ProductPage from './components/Product/ProductPage'
 import { UserContext } from './utils/Context'
 import Dashboard from './components/User/Dashboard'
-
+import ProductForm from './components/Product/CreateProduct'
 const App = () => {
   const { userData } = useContext(UserContext)
-
   // Determine if the user is authenticated
   const renderRoute = (Component: React.ElementType) =>
     userData._id ? <ProductPage /> : <Component />
-
   return (
     <div className="App flex flex-col min-h-screen">
       <Navbar />
@@ -27,7 +25,15 @@ const App = () => {
           <Route path="/register" element={renderRoute(Signup)} />
           <Route path="/ResetPass" element={renderRoute(ResetPassword)} />
           <Route path="/AddProduct" element={<ProductAddForm />} />
-          <Route path="/Dashboard" element={<Dashboard />} />
+          <Route
+            path="/dashboard"
+            element={userData._id ? <Dashboard /> : <ProductPage />}
+          >
+            {/* <Route path="create-auction" element={<CreateAuction />} /> */}
+            <Route path="" element={<ProductForm />} />
+            {/* <Route path="user-products" element={<ProductCard />} /> */}
+            {/**<Route path="user-auctions" element={<UserAuctions />} /> */}
+          </Route>
         </Routes>
       </main>
       <Footer />

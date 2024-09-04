@@ -24,9 +24,9 @@ const UserDropdown = ({
           onMouseLeave={() => setDropdownOpen(false)}
           className="absolute ml-2  w-full  bg-darkCharcoal text-softWhite shadow-lg rounded-lg z-10 "
         >
-          <a href="" className="block px-4 py-2 text-sm hover:bg-brightCoral">
+          {/* <a href="" className="block px-4 py-2 text-sm hover:bg-brightCoral">
             My Profile
-          </a>
+          </a> */}
           <a
             href="/Dashboard"
             className="block px-4 py-2 text-sm hover:bg-brightCoral"

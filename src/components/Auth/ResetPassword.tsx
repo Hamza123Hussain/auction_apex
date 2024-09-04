@@ -1,20 +1,18 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
+import { ResetPass } from '../../functions/Auth/ResetPass'
+import toast from 'react-hot-toast'
 const ResetPassword = () => {
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
   const Router = useNavigate()
-
   const handleResetPassword = async () => {
     setLoading(true)
-    // Call your reset password API here
-    // Example: await resetPassword(email)
-    // After success:
+    await ResetPass(email)
+    toast.success('Email Has Been Sent To Reset Password.')
     setLoading(false)
     Router('/Login')
   }
-
   return (
     <div className="flex flex-col bg-gradient-to-t from-[#333333] to-[#1E90FF] p-6 rounded-lg shadow-lg mx-auto w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl sm:p-8">
       <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center text-white mb-6">
@@ -33,17 +31,7 @@ const ResetPassword = () => {
       >
         Reset Password
       </button>
-      <h6 className="text-xs text-center text-gray-400 mt-4">
-        Remembered Your Password? Click Here To{' '}
-        <span
-          onClick={() => Router('/login')}
-          className="underline cursor-pointer text-[#FF6F61] hover:text-[#FF3B30] transition-all duration-300"
-        >
-          Log In
-        </span>
-      </h6>
     </div>
   )
 }
-
 export default ResetPassword

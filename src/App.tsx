@@ -10,13 +10,14 @@ import ProductPage from './components/Product/ProductPage'
 import { UserContext } from './utils/Context'
 import Dashboard from './components/User/Dashboard'
 import ProductForm from './components/Product/CreateProduct'
+import MakeAuctionForm from './components/Auction/CreateAuction'
 const App = () => {
   const { userData } = useContext(UserContext)
   // Determine if the user is authenticated
   const renderRoute = (Component: React.ElementType) =>
     userData._id ? <ProductPage sellerID="" /> : <Component />
   return (
-    <div className="App flex flex-col min-h-screen">
+    <div className="App flex flex-col min-h-screen bg-slate-900">
       <Navbar />
       <main className="flex-grow p-4 my-10">
         <Routes>
@@ -29,7 +30,7 @@ const App = () => {
             path="/dashboard"
             element={userData._id ? <Dashboard /> : <ProductPage sellerID="" />}
           >
-            {/* <Route path="create-auction" element={<CreateAuction />} /> */}
+            <Route path="create-auction" element={<MakeAuctionForm />} />
             <Route path="" element={<ProductForm />} />
             <Route
               path="user-products"

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { Activity, Annoyed, Lock, LockOpen } from 'lucide-react'
 import { UserContext } from '../utils/Context'
-import ShowUser from './Auth/ShowUser'
+import ShowUser from './User/ShowUser'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)

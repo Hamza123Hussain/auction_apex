@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Signout } from '../../functions/Auth/Signout'
+import { UserContext } from '../../utils/Context'
 const UserDropdown = ({
   dropdownOpen,
   setDropdownOpen,
@@ -8,9 +9,11 @@ const UserDropdown = ({
   dropdownOpen: boolean
   setDropdownOpen: any
 }) => {
+  const { setUserData } = useContext(UserContext)
   const ByeBye = async () => {
     const UserGone = await Signout()
     if (UserGone) {
+      setUserData({})
     }
   }
   //   const navigate = useNavigate()

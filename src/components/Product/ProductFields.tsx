@@ -1,8 +1,10 @@
 import React, { ChangeEvent, useContext } from 'react'
 import { UserContext } from '../../utils/Context'
 import { ProductData } from '../../utils/ProductInterface'
+
 const ProductFields = () => {
   const { productdata, setproductdata } = useContext(UserContext)
+
   const handleChange = (e: any) => {
     if (e.target.type === 'file') {
       setproductdata((prev: any) => ({
@@ -16,6 +18,7 @@ const ProductFields = () => {
       }))
     }
   }
+
   return (
     <>
       <div className="flex flex-col space-y-2">
@@ -76,7 +79,7 @@ const ProductFields = () => {
           Auction End Date
         </label>
         <input
-          type="datetime-local"
+          type="date"
           id="auctionEndDate"
           value={productdata.auctionEndDate}
           onChange={handleChange}

@@ -7,7 +7,8 @@ export const GetUserProducts = async (sellerID: string) => {
   )
   try {
     if (Response.status === 200) {
-      console.log('product data ', Response.data)
+      //   console.log('product data ', Response.data)
+      return Response.data
     }
   } catch (error) {
     console.error('Error fetching products:', error)

@@ -1,56 +1,38 @@
 import React, { useState } from 'react'
-import Login from '../Auth/Login'
-import { Home } from 'lucide-react'
-import Navbar from '../Navbar'
-import ResetPassword from '../Auth/ResetPassword'
-import ProductForm from '../Product/CreateProduct'
-
+import { Outlet, Link } from 'react-router-dom'
 const tabs = [
-  { name: 'Create Auction', value: 'CreateAuction', component: <Login /> },
-  { name: 'Added Product', value: 'AddedProduct', component: <ProductForm /> },
-  { name: 'User Products', value: 'UserProducts', component: <Navbar /> },
-  { name: 'User Auctions', value: 'UserAuctions', component: <footer /> },
+  { name: 'Added Product', value: 'AddedProduct', path: '' },
+  { name: 'Create Auction', value: 'CreateAuction', path: 'create-auction' },
+  { name: 'User Products', value: 'user-products', path: 'user-products' },
+  { name: 'User Auctions', value: 'user-auctions', path: 'user-auctions' },
 ]
-
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState(tabs[0].value)
-
-  const renderTabContent = () => {
-    const activeTabContent = tabs.find((tab) => tab.value === activeTab)
-    return activeTabContent ? activeTabContent.component : <ResetPassword />
-  }
-
   return (
-    <div className="min-h-screen bg-blue-500 rounded-lg text-softWhite">
-      <div className="container mx-auto p-4">
-        <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold">User Dashboard</h1>
-        </div>
-        <div className="mt-6">
-          <div className="flex flex-col md:flex-row md:gap-5">
-            <div className="md:w-1/4">
-              <nav className="space-y-4 md:border-r  border-b-2 border-white px-2 md:min-h-screen md:rounded-lg">
-                {tabs.map((tab) => (
-                  <button
-                    key={tab.value}
-                    onClick={() => setActiveTab(tab.value)}
-                    className={`w-full text-left px-4 py-2 rounded-lg ${
-                      activeTab === tab.value
-                        ? 'bg-vibrantPurple'
-                        : 'hover:bg-brightCoral'
-                    }`}
-                  >
-                    {tab.name}
-                  </button>
-                ))}
-              </nav>
-            </div>
-            <div className="md:w-3/4 mt-6 md:mt-0">{renderTabContent()}</div>
-          </div>
-        </div>
+    <div className="flex flex-col space-y-4    items-center">
+      <h1 className=" text-3xl md:text-6xl mb-4 lg:text-8xl font-extrabold">
+        User DashBoard
+      </h1>
+      <div className=" flex flex-col sm:flex-row   p-4  justify-evenly w-[50vw] bg-darkCharcoal text-softWhite  rounded-lg ">
+        {tabs.map((tab) => (
+          <Link
+            key={tab.value}
+            to={`/dashboard/${tab.path}`}
+            onClick={() => setActiveTab(tab.value)}
+            className={`w-fit px-4 py-2 text-xs inline rounded-lg ${
+              activeTab === tab.value
+                ? 'bg-vibrantPurple'
+                : 'hover:bg-brightCoral'
+            }`}
+          >
+            {tab.name}
+          </Link>
+        ))}
+      </div>
+      <div className=" w-[80vw] ">
+        <Outlet />
       </div>
     </div>
   )
 }
-
 export default Dashboard

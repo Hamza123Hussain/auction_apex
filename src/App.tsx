@@ -8,6 +8,7 @@ import ResetPassword from './components/Auth/ResetPassword'
 import ProductAddForm from './components/Product/CreateProduct'
 import ProductPage from './components/Product/ProductPage'
 import { UserContext } from './utils/Context'
+import Dashboard from './components/User/Dashboard'
 
 const App = () => {
   const { userData } = useContext(UserContext)
@@ -26,6 +27,7 @@ const App = () => {
           <Route path="/register" element={renderRoute(Signup)} />
           <Route path="/ResetPass" element={renderRoute(ResetPassword)} />
           <Route path="/AddProduct" element={<ProductAddForm />} />
+          <Route path="/Dashboard" element={<Dashboard />} />
         </Routes>
       </main>
       <Footer />

@@ -13,8 +13,8 @@ const Login = () => {
     setLoading(true)
     const Data = await LoginUser(inputVal)
     if (Data) {
-      console.log('API HAS RESPONSDED : ', Data)
-      //   setUserData(Data)
+      console.log('API HAS RESPONSDED : ', Data.user)
+      setUserData(Data.user)
       setInputVal({
         email: '',
         password: '',

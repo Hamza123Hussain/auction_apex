@@ -27,7 +27,10 @@ const UserDropdown = ({
           <a href="" className="block px-4 py-2 text-sm hover:bg-brightCoral">
             My Profile
           </a>
-          <a href="" className="block px-4 py-2 text-sm hover:bg-brightCoral">
+          <a
+            href="/Dashboard"
+            className="block px-4 py-2 text-sm hover:bg-brightCoral"
+          >
             Dashboard
           </a>
           <button

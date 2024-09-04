@@ -3,10 +3,11 @@ import Login from '../Auth/Login'
 import { Home } from 'lucide-react'
 import Navbar from '../Navbar'
 import ResetPassword from '../Auth/ResetPassword'
+import ProductForm from '../Product/CreateProduct'
 
 const tabs = [
   { name: 'Create Auction', value: 'CreateAuction', component: <Login /> },
-  { name: 'Added Product', value: 'AddedProduct', component: <Home /> },
+  { name: 'Added Product', value: 'AddedProduct', component: <ProductForm /> },
   { name: 'User Products', value: 'UserProducts', component: <Navbar /> },
   { name: 'User Auctions', value: 'UserAuctions', component: <footer /> },
 ]
@@ -20,15 +21,15 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-electricBlue rounded-lg text-softWhite">
+    <div className="min-h-screen bg-blue-500 rounded-lg text-softWhite">
       <div className="container mx-auto p-4">
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-bold">User Dashboard</h1>
         </div>
         <div className="mt-6">
-          <div className="flex flex-col md:flex-row">
+          <div className="flex flex-col md:flex-row md:gap-5">
             <div className="md:w-1/4">
-              <nav className="space-y-4">
+              <nav className="space-y-4 md:border-r  border-b-2 border-white px-2 md:min-h-screen md:rounded-lg">
                 {tabs.map((tab) => (
                   <button
                     key={tab.value}

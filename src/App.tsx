@@ -8,14 +8,15 @@ import Login from './components/Auth/Login'
 import Signup from './components/Auth/SignUp'
 import ResetPassword from './components/Auth/ResetPassword'
 import ProductAddForm from './components/Product/CreateProduct'
+import ProductPage from './components/Product/ProductPage'
 
 function App() {
   return (
     <div className="App flex flex-col min-h-screen">
       <Navbar />
-      <main className="flex-grow px-4 my-10 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+      <main className="flex-grow justify-center items-center p-4   my-10 ">
         <Routes>
-          <Route path="/" />
+          <Route path="/" element={<ProductPage />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/register" element={<Signup />} />
           <Route path="/ResetPass" element={<ResetPassword />} />

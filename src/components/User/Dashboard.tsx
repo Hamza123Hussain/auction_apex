@@ -29,7 +29,7 @@ const Dashboard = () => {
           </Link>
         ))}
       </div>
-      <div className=" w-[80vw] ">
+      <div className=" w-[80vw]  mx-auto">
         <Outlet />
       </div>
     </div>

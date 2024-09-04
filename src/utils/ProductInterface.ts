@@ -3,7 +3,7 @@ export interface ProductData {
   description: string
   price: number
   image: File | null | string
-  auctionEndDate: string
+  auctionEndDate: Date | null
   status: string
 }
 export interface ProductCardData {

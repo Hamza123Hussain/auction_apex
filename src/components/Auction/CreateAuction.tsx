@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import InputField from '../Product/InputField'
 import { inputFields } from './InputFieldArray'
+import { CreateAuctions } from '../../functions/Auction/MakeAuction'
 const MakeAuctionForm = () => {
   const [formData, setFormData] = useState({
     product: '',
@@ -17,12 +18,7 @@ const MakeAuctionForm = () => {
   }
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    try {
-      const response = await axios.post('/api/make-auction', formData)
-      console.log(response.data.message)
-    } catch (error: any) {
-      console.error(error.response?.data?.message || 'Failed to create auction')
-    }
+    await CreateAuctions(formData)
   }
   return (
     <div className="space-y-6 bg-gradient-to-t from-[#fdfbfb9c] to-[#465d74] p-6 rounded-lg shadow-md">

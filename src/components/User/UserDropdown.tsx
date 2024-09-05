@@ -1,5 +1,4 @@
-import React, { useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
 import { Signout } from '../../functions/Auth/Signout'
 import { UserContext } from '../../utils/Context'
 const UserDropdown = ({
@@ -16,7 +15,6 @@ const UserDropdown = ({
       setUserData({})
     }
   }
-  //   const navigate = useNavigate()
   return (
     <>
       {dropdownOpen && (
@@ -24,9 +22,12 @@ const UserDropdown = ({
           onMouseLeave={() => setDropdownOpen(false)}
           className="absolute ml-2  w-full  bg-darkCharcoal text-softWhite shadow-lg rounded-lg z-10 "
         >
-          {/* <a href="" className="block px-4 py-2 text-sm hover:bg-brightCoral">
+          <a
+            href="/Profile"
+            className="block px-4 py-2 text-sm hover:bg-brightCoral"
+          >
             My Profile
-          </a> */}
+          </a>
           <a
             href="/Dashboard"
             className="block px-4 py-2 text-sm hover:bg-brightCoral"
@@ -44,5 +45,4 @@ const UserDropdown = ({
     </>
   )
 }
-
 export default UserDropdown

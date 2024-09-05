@@ -5,6 +5,7 @@ export const AllAuctions = async () => {
   const response = await axios.get(`${APIURL}/API/Auction/AllAuctions`)
   try {
     if (response.status === 200) {
+      console.log(response.data)
       return response.data
     }
   } catch (error) {

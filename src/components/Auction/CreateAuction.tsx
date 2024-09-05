@@ -3,12 +3,13 @@ import InputField from '../Product/InputField'
 import { inputFields } from './InputFieldArray'
 import { CreateAuctions } from '../../functions/Auction/MakeAuction'
 import toast from 'react-hot-toast'
+import { useParams } from 'react-router-dom'
 const MakeAuctionForm = () => {
   const [formData, setFormData] = useState({
-    product: '',
     startDate: '',
     endDate: '',
   })
+  const { productId } = useParams()
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target
     setFormData((prevData) => ({
@@ -56,7 +57,7 @@ const MakeAuctionForm = () => {
                 ? formData.endDate
                 : field.id === 'startDate'
                 ? formData.startDate
-                : formData.product
+                : `${productId}`
             }
             onChange={handleChange}
             required={field.required}

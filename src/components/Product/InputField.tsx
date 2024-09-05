@@ -25,6 +25,7 @@ const InputField: React.FC<InputFieldProps> = ({
         {label}
       </label>
       <input
+        disabled={id === 'product'}
         type={type}
         id={id}
         name={name}

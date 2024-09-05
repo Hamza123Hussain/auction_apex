@@ -1,4 +1,5 @@
 import React from 'react'
+import { normalizePath } from '../../functions/imagepath'
 
 const AuctionCard = ({ auction }: { auction: any }) => {
   const isAuctionStarted = (startDate: string) => {
@@ -6,6 +7,9 @@ const AuctionCard = ({ auction }: { auction: any }) => {
     const start = new Date(startDate)
     return now >= start
   }
+  let imageurl = auction.product?.image
+    ? normalizePath(auction.product?.image)
+    : ''
   return (
     <div
       key={auction._id}
@@ -14,9 +18,9 @@ const AuctionCard = ({ auction }: { auction: any }) => {
       <div className="relative">
         <img
           src={
-            auction.product?.image
+            !auction.product?.image
               ? 'https://jang.com.pk/assets/uploads/updates/2024-08-31/19584_8076291_Hania-Aamir_updates.jpg'
-              : 'https://dialoguepakistan.com/en/upload/media/posts/2024-09/04/astrologer-predicts-2026-as-turning-point-for-hania-aamir_1725435923-s.jpg'
+              : imageurl
           }
           alt={auction.product?.productName}
           className="w-full h-48 object-cover"

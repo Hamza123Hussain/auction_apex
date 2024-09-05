@@ -1,21 +1,18 @@
 'use client'
 import { createContext, ReactNode, useEffect, useState } from 'react'
 import { InputValues, UserData } from './SignupInterface'
-import { ProductData } from './ProductInterface'
-
 export const UserContext = createContext<any>(null)
-
 const ContextProvider = ({ children }: { children: ReactNode }) => {
   // States
   const [inputVal, setInputVal] = useState<InputValues>({
     email: '',
     password: '',
-    Name: '',
+    username: '',
     Image: null,
+    image: '',
+    _id: '',
   })
-
   const [loading, setLoading] = useState(true) // Start with loading true
-
   const [userData, setUserData] = useState<UserData>(() => {
     try {
       const storedData = localStorage.getItem('userData')
@@ -25,7 +22,6 @@ const ContextProvider = ({ children }: { children: ReactNode }) => {
       return {} // Fallback to empty object
     }
   })
-
   // Effect for saving userData to local storage
   useEffect(() => {
     try {
@@ -34,13 +30,11 @@ const ContextProvider = ({ children }: { children: ReactNode }) => {
       console.error('Failed to save userData to localStorage:', error)
     }
   }, [userData])
-
   // Effect for loading state and timer for demonstration purposes
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1000) // Simulated delay
     return () => clearTimeout(timer) // Cleanup on unmount
   }, [])
-
   return (
     <UserContext.Provider
       value={{
@@ -56,5 +50,4 @@ const ContextProvider = ({ children }: { children: ReactNode }) => {
     </UserContext.Provider>
   )
 }
-
 export default ContextProvider

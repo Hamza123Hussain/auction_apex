@@ -1,8 +1,10 @@
 export interface InputValues {
   email: string
   password: string
-  Name: string
+  username: string
   Image: File | null
+  image: string
+  _id: string
 }
 
 export interface UserData {

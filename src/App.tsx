@@ -12,6 +12,7 @@ import Dashboard from './components/User/Dashboard'
 import ProductForm from './components/Product/CreateProduct'
 import MakeAuctionForm from './components/Auction/CreateAuction'
 import AuctionsList from './components/Auction/AllAuctions'
+import Profile from './components/User/Profile'
 const App = () => {
   const { userData } = useContext(UserContext)
   // Determine if the user is authenticated
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/register" element={renderRoute(Signup)} />
           <Route path="/ResetPass" element={renderRoute(ResetPassword)} />
           <Route path="/AddProduct" element={<ProductAddForm />} />
+          <Route path="/Profile" element={<Profile />} />
           <Route
             path="/dashboard"
             element={userData._id ? <Dashboard /> : <AuctionsList />}
@@ -48,5 +50,4 @@ const App = () => {
     </div>
   )
 }
-
 export default App

@@ -4,11 +4,13 @@ export interface InputValues {
   Name: string
   Image: File | null
 }
+
 export interface UserData {
-  Name: string
-  UserID: string
+  _id: string // Use String type for _id
+  username: string
   email: string
-  imageUrl: string
+  password: string
+  image: string // Field for storing image URL or path
 }
 
 export const APIURL = 'http://localhost:5000'

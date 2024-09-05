@@ -1,15 +1,12 @@
-import React from 'react'
-import { normalizePath } from '../../functions/imagepath'
-
-const AuctionCard = ({ auction }: { auction: any }) => {
+import { useParams } from 'react-router-dom'
+import { AuctionCardData } from '../../utils/AuctionInteface'
+import { APIURL } from '../../utils/SignupInterface'
+const AuctionCard = ({ auction }: { auction: AuctionCardData }) => {
   const isAuctionStarted = (startDate: string) => {
     const now = new Date()
     const start = new Date(startDate)
     return now >= start
   }
-  let imageurl = auction.product?.image
-    ? normalizePath(auction.product?.image)
-    : ''
   return (
     <div
       key={auction._id}
@@ -20,7 +17,7 @@ const AuctionCard = ({ auction }: { auction: any }) => {
           src={
             !auction.product?.image
               ? 'https://jang.com.pk/assets/uploads/updates/2024-08-31/19584_8076291_Hania-Aamir_updates.jpg'
-              : imageurl
+              : `${APIURL}/${auction.product?.image}`
           }
           alt={auction.product?.productName}
           className="w-full h-48 object-cover"
@@ -55,7 +52,7 @@ const AuctionCard = ({ auction }: { auction: any }) => {
         </p>
         <p className="text-sm text-gray-400">
           {auction.highestBidder
-            ? `Highest Bidder: ${auction.highestBidder.name}`
+            ? `Highest Bidder: ${auction.highestBidder.username}`
             : 'No highest bidder yet'}
         </p>
         {isAuctionStarted(auction.startDate) && (
@@ -67,5 +64,4 @@ const AuctionCard = ({ auction }: { auction: any }) => {
     </div>
   )
 }
-
 export default AuctionCard

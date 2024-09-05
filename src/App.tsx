@@ -13,6 +13,7 @@ import ProductForm from './components/Product/CreateProduct'
 import MakeAuctionForm from './components/Auction/CreateAuction'
 import AuctionsList from './components/Auction/AllAuctions'
 import Profile from './components/User/Profile'
+import SingleAuction from './components/Auction/SingleAuction'
 const App = () => {
   const { userData } = useContext(UserContext)
   // Determine if the user is authenticated
@@ -42,12 +43,14 @@ const App = () => {
               path="user-products"
               element={<ProductPage sellerID={userData._id} />}
             />
-            *<Route path="user-auctions" element={<AuctionsList />} />
+            <Route path="user-auctions" element={<AuctionsList />} />
           </Route>
+          <Route path="/AuctionCard/:AuctionID" element={<SingleAuction />} />
         </Routes>
       </main>
       <Footer />
     </div>
   )
 }
+
 export default App

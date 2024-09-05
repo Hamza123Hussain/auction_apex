@@ -16,22 +16,25 @@ const App = () => {
   const { userData } = useContext(UserContext)
   // Determine if the user is authenticated
   const renderRoute = (Component: React.ElementType) =>
-    userData._id ? <ProductPage sellerID="" /> : <Component />
+    userData._id ? <AuctionsList /> : <Component />
   return (
     <div className="App flex flex-col min-h-screen bg-slate-900">
       <Navbar />
       <main className="flex-grow p-4 my-10">
         <Routes>
-          <Route path="/" element={<ProductPage sellerID="" />} />
+          <Route path="/" element={<AuctionsList />} />
           <Route path="/Login" element={renderRoute(Login)} />
           <Route path="/register" element={renderRoute(Signup)} />
           <Route path="/ResetPass" element={renderRoute(ResetPassword)} />
           <Route path="/AddProduct" element={<ProductAddForm />} />
           <Route
             path="/dashboard"
-            element={userData._id ? <Dashboard /> : <ProductPage sellerID="" />}
+            element={userData._id ? <Dashboard /> : <AuctionsList />}
           >
-            <Route path="create-auction" element={<MakeAuctionForm />} />
+            <Route
+              path="create-auction/:productId"
+              element={<MakeAuctionForm />}
+            />
             <Route path="" element={<ProductForm />} />
             <Route
               path="user-products"

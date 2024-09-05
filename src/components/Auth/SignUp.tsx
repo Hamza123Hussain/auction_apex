@@ -3,21 +3,30 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { UserContext } from '../../utils/Context'
 import { RegisterUser } from '../../functions/Auth/Register'
 import TextFields from './SignupFields'
+import { Update_User } from '../../functions/Auth/UpdateUser'
 const SignUp = () => {
   const Router = useNavigate()
   const context = useContext(UserContext)
   const { inputVal, setInputVal, loading, setLoading, setUserData } = context
   const HandleSignup = async () => {
     setLoading(true)
-    const Data = await RegisterUser(inputVal)
+    const Data =
+      location.pathname === '/Profile'
+        ? await Update_User(inputVal)
+        : await RegisterUser(inputVal)
     console.log('API RESPONSED : ', Data)
-    setUserData()
-    setInputVal({
-      email: '',
-      password: '',
-      Name: '',
-      Image: null,
-    })
+
+    location.pathname === '/Profile'
+      ? setUserData({
+          username: inputVal.username,
+          image: inputVal.image, // Field for storing image URL or path
+        })
+      : setInputVal({
+          email: '',
+          password: '',
+          Name: '',
+          Image: null,
+        })
     setLoading(false)
   }
   const location = useLocation() // get the current location

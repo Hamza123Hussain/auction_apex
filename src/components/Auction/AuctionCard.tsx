@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { AuctionCardData } from '../../utils/AuctionInteface'
 import { APIURL } from '../../utils/SignupInterface'
 const AuctionCard = ({ auction }: { auction: AuctionCardData }) => {
@@ -7,6 +7,7 @@ const AuctionCard = ({ auction }: { auction: AuctionCardData }) => {
     const start = new Date(startDate)
     return now >= start
   }
+  const Router = useNavigate()
   return (
     <div
       key={auction._id}
@@ -56,7 +57,10 @@ const AuctionCard = ({ auction }: { auction: AuctionCardData }) => {
             : 'No highest bidder yet'}
         </p>
         {isAuctionStarted(auction.startDate) && (
-          <button className="mt-4 bg-electricBlue text-softWhite px-4 py-2 rounded-lg hover:bg-blue-700">
+          <button
+            onClick={() => Router(`AuctionCard/${auction._id}`)}
+            className="mt-4 bg-electricBlue text-softWhite px-4 py-2 rounded-lg hover:bg-blue-700"
+          >
             Start Bidding
           </button>
         )}

@@ -6,7 +6,7 @@ export const RegisterUser = async (userData: InputValues) => {
   try {
     // Prepare form data for sending a file
     const formData = new FormData()
-    formData.append('username', userData.Name)
+    formData.append('username', userData.username)
     formData.append('email', userData.email)
     formData.append('password', userData.password)
     if (userData.Image) {

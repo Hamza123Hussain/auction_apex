@@ -34,7 +34,7 @@ const ProductPage = ({ sellerID }: { sellerID: string }) => {
           It looks like there are no products available right now.
         </p>
         <button
-          onClick={() => navigate('/create-product')}
+          onClick={() => navigate('/dashboard')}
           className="bg-electricBlue text-softWhite px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center gap-2"
         >
           <AddCircleOutline className="mr-2" />

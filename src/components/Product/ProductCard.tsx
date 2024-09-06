@@ -1,5 +1,5 @@
 import { ProductCardData } from '../../utils/ProductInterface'
-import { normalizePath } from '../../functions/imagepath'
+import { normalizePath } from '../../functions/Product/imagepath'
 import { APIURL } from '../../utils/SignupInterface'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { statusColors } from './StatusColorObj'

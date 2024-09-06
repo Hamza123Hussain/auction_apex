@@ -11,6 +11,7 @@ const ContextProvider = ({ children }: { children: ReactNode }) => {
     Image: null,
     image: '',
     _id: '',
+    bid: 0,
   })
   const [loading, setLoading] = useState(true) // Start with loading true
   const [userData, setUserData] = useState<UserData>(() => {

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getSingleAuction } from '../../functions/Auction/GettingAsingleAuction'
-import { AuctionCardData, AuctionCreate } from '../../utils/AuctionInteface'
+import { AuctionCardData } from '../../utils/AuctionInteface'
 import AuctionCard from './AuctionCard'
 
 const SingleAuction = () => {
@@ -15,7 +15,13 @@ const SingleAuction = () => {
     }
     GetAuctionData()
   }, [AuctionID])
-  return <>{auctiondata && <AuctionCard auction={auctiondata} />}</>
+  return (
+    <div className=" flex flex-col mx-auto p-3">
+      <div className=" sm:w-1/2 mx-auto">
+        {auctiondata && <AuctionCard auction={auctiondata} />}
+      </div>
+    </div>
+  )
 }
 
 export default SingleAuction

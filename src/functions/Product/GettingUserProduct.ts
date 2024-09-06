@@ -10,6 +10,7 @@ export const GetUserProducts = async (sellerID: string) => {
       //   console.log('product data ', Response.data)
       return Response.data
     }
+    return []
   } catch (error) {
     console.error('Error fetching products:', error)
     alert('An error occurred while fetching the products.')

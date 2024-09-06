@@ -1,12 +1,17 @@
 import axios from 'axios'
 import { APIURL } from '../../utils/SignupInterface'
 
-export const CreateAuctions = async (formData: any) => {
+export const CreateAuctions = async (
+  product: string,
+  startDate: any,
+  endDate: any
+) => {
   try {
-    const response = await axios.post(
-      `${APIURL}/API/Auction/MakeAuction`,
-      formData
-    )
+    const response = await axios.post(`${APIURL}/API/Auction/MakeAuction`, {
+      product,
+      startDate,
+      endDate,
+    })
     if (response.status === 201) {
       console.log('DATA HAS BEEN RETURNED ', response.data)
     }

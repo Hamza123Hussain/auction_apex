@@ -13,6 +13,7 @@ const ContextProvider = ({ children }: { children: ReactNode }) => {
     _id: '',
     bid: 0,
   })
+  const [flag, setflag] = useState(false)
   const [loading, setLoading] = useState(true) // Start with loading true
   const [userData, setUserData] = useState<UserData>(() => {
     try {
@@ -45,6 +46,8 @@ const ContextProvider = ({ children }: { children: ReactNode }) => {
         setLoading,
         inputVal,
         setInputVal,
+        flag,
+        setflag,
       }}
     >
       {children}

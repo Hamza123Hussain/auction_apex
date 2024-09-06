@@ -1,4 +1,4 @@
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { AuctionCardData } from '../../utils/AuctionInteface'
 import { APIURL } from '../../utils/SignupInterface'
 import { isAuctionStarted } from '../../functions/Auction/AuctionStatus'
@@ -13,26 +13,28 @@ const AuctionCard = ({ auction }: { auction: AuctionCardData }) => {
       <div className="relative">
         <img
           src={
-            !auction.product?.image
+            auction.product?.image
               ? 'https://jang.com.pk/assets/uploads/updates/2024-08-31/19584_8076291_Hania-Aamir_updates.jpg'
               : `${APIURL}/${auction.product?.image}`
           }
           alt={auction.product?.productName}
-          className="w-full h-48 object-cover"
+          className=" w-fit"
         />
-        <div className="absolute top-0 right-0 p-2">
-          <span
-            className={`px-3 py-1 rounded-lg text-sm font-bold uppercase ${
-              isAuctionStarted(auction.startDate)
-                ? 'bg-neonGreen'
-                : 'bg-brightCoral'
-            }`}
-          >
-            {isAuctionStarted(auction.startDate)
-              ? 'Auction Started'
-              : 'Upcoming'}
-          </span>
-        </div>
+        {!Location.pathname.startsWith('/AuctionCard') && (
+          <div className="absolute top-0 right-0 p-2">
+            <span
+              className={`px-3 py-1 rounded-lg text-sm font-bold uppercase ${
+                isAuctionStarted(auction.startDate)
+                  ? 'bg-neonGreen'
+                  : 'bg-brightCoral'
+              }`}
+            >
+              {isAuctionStarted(auction.startDate)
+                ? 'Auction Started'
+                : 'Upcoming'}
+            </span>
+          </div>
+        )}
       </div>
       <div className="p-4">
         <h2 className="text-xl font-bold mb-2">
@@ -54,9 +56,9 @@ const AuctionCard = ({ auction }: { auction: AuctionCardData }) => {
             : 'No highest bidder yet'}
         </p>
         {isAuctionStarted(auction.startDate) &&
-          Location.pathname === '/AuctionCard/:AuctionID' && (
+          !Location.pathname.startsWith('/AuctionCard') && (
             <button
-              onClick={() => Router(`AuctionCard/${auction._id}`)}
+              onClick={() => Router(`/AuctionCard/${auction._id}`)}
               className="mt-4 bg-electricBlue text-softWhite px-4 py-2 rounded-lg hover:bg-blue-700"
             >
               Start Bidding

@@ -66,7 +66,7 @@ const TextFields = () => {
           <img
             src={`${APIURL}/${userData.imageurl}`}
             alt="profile"
-            className=" w-24 self-center"
+            className="  self-center"
           />
         </div>
       )}

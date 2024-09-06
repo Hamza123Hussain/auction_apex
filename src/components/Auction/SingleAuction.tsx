@@ -6,11 +6,12 @@ import AuctionCard from './AuctionCard'
 import { UserContext } from '../../utils/Context'
 import BidField from './BidField'
 import GoHome from '../GoHome'
+import { placeBid } from '../../functions/Auction/PlaceBid'
 const SingleAuction = () => {
-  const { inputVal } = useContext(UserContext)
+  const { inputVal, userData } = useContext(UserContext)
   const { AuctionID } = useParams()
   const [auctiondata, setdata] = useState<AuctionCardData>()
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   useEffect(() => {
     const GetAuctionData = async () => {
       const Data = await getSingleAuction(AuctionID)
@@ -20,9 +21,17 @@ const SingleAuction = () => {
   }, [AuctionID])
   const handleBidSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Logic to submit the bid goes here
-    // e.g., await submitBid(AuctionID, bidAmount)
-    // console.log('Bid submitted:', bidAmount)
+    // Validate inputVal.bid and userData._id before sending the request
+    if (!AuctionID || !inputVal?.bid || !userData?._id) {
+      console.error('Missing AuctionID, bid, or userData.')
+      return
+    }
+    try {
+      const Data = await placeBid(AuctionID, inputVal?.bid, userData._id)
+      console.log('Bid done', Data)
+    } catch (error) {
+      console.error('Error placing bid:', error)
+    }
   }
   return (
     <div className="flex flex-col mx-auto p-3 max-w-3xl">

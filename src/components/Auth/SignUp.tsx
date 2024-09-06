@@ -4,29 +4,32 @@ import { UserContext } from '../../utils/Context'
 import { RegisterUser } from '../../functions/Auth/Register'
 import TextFields from './SignupFields'
 import { Update_User } from '../../functions/Auth/UpdateUser'
+import { UserData } from '../../utils/SignupInterface'
 const SignUp = () => {
   const Router = useNavigate()
   const context = useContext(UserContext)
   const { inputVal, setInputVal, loading, setLoading, setUserData } = context
-  const HandleSignup = async () => {
+  const HandleData = async () => {
     setLoading(true)
     const Data =
       location.pathname === '/Profile'
         ? await Update_User(inputVal)
         : await RegisterUser(inputVal)
     console.log('API RESPONSED : ', Data)
-
-    location.pathname === '/Profile'
-      ? setUserData({
-          username: inputVal.username,
-          image: inputVal.image, // Field for storing image URL or path
-        })
-      : setInputVal({
-          email: '',
-          password: '',
-          Name: '',
-          Image: null,
-        })
+    if (Data) {
+      location.pathname === '/Profile'
+        ? setUserData((prev: UserData) => ({
+            ...prev,
+            Name: inputVal.username,
+            imageurl: Data.image,
+          }))
+        : setInputVal({
+            email: '',
+            password: '',
+            Name: '',
+            Image: null,
+          })
+    }
     setLoading(false)
   }
   const location = useLocation() // get the current location
@@ -38,7 +41,7 @@ const SignUp = () => {
       </h2>
       <TextFields />
       <button
-        onClick={HandleSignup}
+        onClick={HandleData}
         className="bg-[#39FF14] hover:bg-[#2b9d0b] text-white font-medium py-2 rounded-lg shadow-md transition-all duration-300 mt-4 text-xs sm:text-sm md:text-base w-full max-w-xs mx-auto"
       >
         {location.pathname === '/Profile' ? 'Update Profile' : 'Sign Up'}

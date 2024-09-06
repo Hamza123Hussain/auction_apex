@@ -33,8 +33,10 @@ const MakeAuctionForm = () => {
       return
     }
     try {
-      await CreateAuctions(formData)
-      toast.success('Auction created successfully!')
+      if (productId) {
+        await CreateAuctions(productId, formData.startDate, formData.endDate)
+        toast.success('Auction created successfully!')
+      }
     } catch (error) {
       toast.error('Failed to create auction')
     }

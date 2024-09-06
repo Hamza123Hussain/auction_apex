@@ -3,7 +3,7 @@ import { UserContext } from '../../utils/Context'
 import { APIURL, InputValues } from '../../utils/SignupInterface'
 import FileField from './FileField'
 import { useLocation } from 'react-router-dom'
-import { normalizePath } from '../../functions/imagepath'
+import { normalizePath } from '../../functions/Product/imagepath'
 
 const TextFields = () => {
   const { inputVal, setInputVal } = useContext(UserContext)

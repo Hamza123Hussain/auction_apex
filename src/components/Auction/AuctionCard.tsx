@@ -1,10 +1,10 @@
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { AuctionCardData } from '../../utils/AuctionInteface'
 import { APIURL } from '../../utils/SignupInterface'
 import { isAuctionStarted } from '../../functions/Auction/AuctionStatus'
+import ProductAndBidderDetails from './ProductAndBidderDetails'
 const AuctionCard = ({ auction }: { auction: AuctionCardData }) => {
   const Location = useLocation()
-  const Router = useNavigate()
   return (
     <div
       key={auction._id}
@@ -36,35 +36,7 @@ const AuctionCard = ({ auction }: { auction: AuctionCardData }) => {
           </div>
         )}
       </div>
-      <div className="p-4">
-        <h2 className="text-xl font-bold mb-2">
-          {auction.product?.productName}
-        </h2>
-        <p className="text-base mb-2">{auction.product?.description}</p>
-        <p className="text-lg font-semibold mb-2 text-neonGreen">
-          ${auction.currentBid}
-        </p>
-        <p className="text-sm text-gray-400">
-          Start Date: {new Date(auction.startDate).toLocaleString()}
-        </p>
-        <p className="text-sm text-gray-400">
-          End Date: {new Date(auction.endDate).toLocaleString()}
-        </p>
-        <p className="text-sm text-gray-400">
-          {auction.highestBidder
-            ? `Highest Bidder: ${auction.highestBidder.username}`
-            : 'No highest bidder yet'}
-        </p>
-        {isAuctionStarted(auction.startDate) &&
-          !Location.pathname.startsWith('/AuctionCard') && (
-            <button
-              onClick={() => Router(`/AuctionCard/${auction._id}`)}
-              className="mt-4 bg-electricBlue text-softWhite px-4 py-2 rounded-lg hover:bg-blue-700"
-            >
-              Start Bidding
-            </button>
-          )}
-      </div>
+      <ProductAndBidderDetails auction={auction} />
     </div>
   )
 }

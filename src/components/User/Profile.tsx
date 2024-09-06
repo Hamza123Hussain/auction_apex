@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { GetUser } from '../../functions/Auth/GettingUserDetails'
 import { UserContext } from '../../utils/Context'
-import SignUpTextFields from '../Auth/SignupFields'
 import SignUp from '../Auth/SignUp'
 const Profile = () => {
   const { userData, inputVal, setInputVal } = useContext(UserContext)
@@ -14,7 +13,7 @@ const Profile = () => {
       }
     }
     GetUserData()
-  }, [])
+  }, [userData._id])
 
   return (
     <>

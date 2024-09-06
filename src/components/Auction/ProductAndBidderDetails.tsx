@@ -32,11 +32,11 @@ const ProductAndBidderDetails = ({ auction }: { auction: AuctionCardData }) => {
       </div>
 
       {/* Highest Bidder */}
-      <p className="text-sm text-gray-400 flex flex-col items-center my-2">
-        <h1 className="flex items-center gap-2">
+      <h1 className="text-sm text-gray-400 flex flex-col items-center my-2">
+        <p className="flex items-center gap-2">
           <PersonIcon className="mr-2" />
           Highest Bidder
-        </h1>
+        </p>
         {auction.highestBidder ? (
           <div className="flex items-center gap-2">
             <img
@@ -50,7 +50,7 @@ const ProductAndBidderDetails = ({ auction }: { auction: AuctionCardData }) => {
         ) : (
           <span>No highest bidder yet</span>
         )}
-      </p>
+      </h1>
 
       {/* Auction Dates */}
       <div className="gap-2 mt-5 flex flex-col">

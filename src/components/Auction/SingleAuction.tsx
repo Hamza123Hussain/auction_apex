@@ -26,9 +26,12 @@ const SingleAuction = () => {
       console.error('Missing AuctionID, bid, or userData.')
       return
     }
+
     try {
-      const Data = await placeBid(AuctionID, inputVal?.bid, userData._id)
-      console.log('Bid done', Data)
+      if (auctiondata?.currentBid && inputVal.bid > auctiondata?.currentBid) {
+        const Data = await placeBid(AuctionID, inputVal?.bid, userData._id)
+        console.log('Bid done', Data)
+      }
     } catch (error) {
       console.error('Error placing bid:', error)
     }

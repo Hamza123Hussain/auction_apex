@@ -10,7 +10,7 @@ export const getSingleAuction = async (AuctionID: any) => {
     })
 
     if (response.status === 200) {
-      console.log('Auction details:', response.data)
+      // console.log('Auction details:', response.data)
       return response.data
     }
   } catch (error) {

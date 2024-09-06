@@ -3,8 +3,9 @@ import InputField from '../Product/InputField'
 import { inputFields } from './InputFieldArray'
 import { CreateAuctions } from '../../functions/Auction/MakeAuction'
 import toast from 'react-hot-toast'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 const MakeAuctionForm = () => {
+  const Router = useNavigate()
   const [formData, setFormData] = useState({
     startDate: '',
     endDate: '',
@@ -36,6 +37,7 @@ const MakeAuctionForm = () => {
       if (productId) {
         await CreateAuctions(productId, formData.startDate, formData.endDate)
         toast.success('Auction created successfully!')
+        Router('/dashboard/user-auctions')
       }
     } catch (error) {
       toast.error('Failed to create auction')

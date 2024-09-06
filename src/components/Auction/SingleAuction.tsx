@@ -8,13 +8,13 @@ import GoHome from '../GoHome'
 import { placeBid } from '../../functions/Auction/PlaceBid'
 import toast from 'react-hot-toast'
 import { io } from 'socket.io-client'
-
+import Loader from '../Loader'
 const SingleAuction = () => {
   const { inputVal, userData, flag, setflag } = useContext(UserContext)
   const { AuctionID } = useParams()
   const [error, setError] = useState<any>()
   const [auctiondata, setdata] = useState<AuctionCardData>()
-
+  const [loading, setLoading] = useState(true)
   useEffect(() => {
     const socket = io('http://localhost:5000', {
       transports: ['websocket', 'polling'], // Explicitly specify transports
@@ -23,13 +23,16 @@ const SingleAuction = () => {
     socket.on('connect_error', (error) => {
       console.error('Socket.IO connection error:', error)
       setError(error)
+      setLoading(false)
     })
     socket.on('error', (error) => {
       console.error('Socket.IO error:', error)
       setError(error)
+      setLoading(false)
     })
     socket.on('AuctionData', (data) => {
       setdata(data)
+      setLoading(false)
     })
     return () => {
       if (socket) {
@@ -37,27 +40,26 @@ const SingleAuction = () => {
       }
     }
   }, [userData._id, AuctionID, flag]) // `flag` is included as a dependency
-
   if (error) {
     return <div className="text-center text-brightRed">{error}</div>
   }
-
+  if (loading)
+    return (
+      <div className=" min-h-screen flex justify-center items-center">
+        <Loader />
+      </div>
+    )
   const handleBidSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!AuctionID || !inputVal?.bid || !userData?._id) {
       console.error('Missing AuctionID, bid, or userData.')
       return
     }
-
     try {
       if (auctiondata?.currentBid && inputVal.bid > auctiondata?.currentBid) {
-        // Toggle `flag` using a functional update
-
-        console.log('FLAG ', !flag) // Will print the new value of the flag
         const Data = await placeBid(AuctionID, inputVal?.bid, userData._id)
         if (Data) {
           setflag((prevFlag: boolean) => !prevFlag)
-          console.log('Bid done', Data)
         }
       } else {
         toast.error('BID IS LESS THAN CURRENT BID')
@@ -66,7 +68,6 @@ const SingleAuction = () => {
       console.error('Error placing bid:', error)
     }
   }
-
   return (
     <div className="flex flex-col mx-auto p-3 max-w-3xl">
       <div className="sm:w-1/2 mx-auto mb-6">
@@ -85,5 +86,4 @@ const SingleAuction = () => {
     </div>
   )
 }
-
 export default SingleAuction

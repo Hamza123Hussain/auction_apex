@@ -3,7 +3,9 @@ import InputField from './InputField'
 import SelectField from './SelectField'
 import FileInput from './FileInput'
 import { createProduct } from '../../functions/Product/CreateAProduct'
+import { useNavigate } from 'react-router-dom'
 const ProductForm = () => {
+  const Router = useNavigate()
   const [imageFile, setImageFile] = useState<File | null>(null)
   const [productData, setProductData] = useState({
     productName: '',
@@ -11,10 +13,8 @@ const ProductForm = () => {
     auctionEndDate: '',
     status: 'active',
   })
-
   const handleChange = (e: any) => {
     const { name, value, type, files } = e.target
-
     if (type === 'file' && files && files[0]) {
       setImageFile(files[0])
     } else {
@@ -24,12 +24,11 @@ const ProductForm = () => {
       }))
     }
   }
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     await createProduct(productData, imageFile)
+    Router('/dashboard/user-products')
   }
-
   return (
     <form
       onSubmit={handleSubmit}
@@ -44,7 +43,6 @@ const ProductForm = () => {
         onChange={handleChange}
         required
       />
-
       <InputField
         id="price"
         label="Price"
@@ -54,7 +52,6 @@ const ProductForm = () => {
         onChange={handleChange}
         required
       />
-
       <InputField
         id="auctionEndDate"
         label="Auction End Date"
@@ -64,7 +61,6 @@ const ProductForm = () => {
         onChange={handleChange}
         required
       />
-
       <SelectField
         id="status"
         label="Status"
@@ -77,14 +73,12 @@ const ProductForm = () => {
           { value: 'canceled', label: 'Canceled' },
         ]}
       />
-
       <FileInput
         id="image"
         label="Image"
         name="image"
         onChange={handleChange}
       />
-
       <button
         type="submit"
         className="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition-colors"
@@ -94,5 +88,4 @@ const ProductForm = () => {
     </form>
   )
 }
-
 export default ProductForm

@@ -15,7 +15,7 @@ const ShowUser = () => {
       >
         <img
           src={`${APIURL}/${userData.imageurl}`}
-          className="rounded-full w-12"
+          className="rounded-full w-8"
           alt={userData.Name}
         />
         <h6 className="font-extrabold">{userData.Name}</h6>

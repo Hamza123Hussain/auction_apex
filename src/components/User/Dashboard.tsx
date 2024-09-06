@@ -5,7 +5,7 @@ const Dashboard = () => {
   const [activeTab, setActiveTab] = useState(tabs[0].value)
   return (
     <div className="flex flex-col space-y-4    items-center">
-      <h1 className=" text-3xl md:text-6xl mb-4 lg:text-8xl font-extrabold">
+      <h1 className=" text-3xl md:text-6xl mb-4 text-softWhite lg:text-8xl font-extrabold">
         User DashBoard
       </h1>
       <div className=" flex flex-col sm:flex-row   p-4  justify-evenly w-[50vw] bg-darkCharcoal text-softWhite  rounded-lg ">

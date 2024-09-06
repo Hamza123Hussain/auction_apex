@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import AuctionCard from './AuctionCard'
 import { AuctionCardData } from '../../utils/AuctionInteface'
 import { io } from 'socket.io-client'
 import Loader from '../Loader'
+import { UserContext } from '../../utils/Context'
 const AuctionsList = () => {
   const [auctions, setAuctions] = useState<AuctionCardData[]>([])
   const [error, setError] = useState<any>(null)
+  const { flag } = useContext(UserContext)
   const [loading, setLoading] = useState(true)
   useEffect(() => {
     const socket = io('http://localhost:5000', {
@@ -33,7 +35,7 @@ const AuctionsList = () => {
         setLoading(false)
       }
     }
-  })
+  }, [flag])
   if (loading)
     return (
       <div className=" min-h-screen flex justify-center items-center">

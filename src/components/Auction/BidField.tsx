@@ -19,7 +19,7 @@ const BidField = () => {
       </label>
       <input
         type="number"
-        value={inputVal.bid}
+        value={inputVal.bid > 0 ? inputVal.bid : 0}
         onChange={HandleChange}
         placeholder="Bid amount"
         name="bid"

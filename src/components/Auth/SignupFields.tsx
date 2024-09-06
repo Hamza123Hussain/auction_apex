@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom'
 import { normalizePath } from '../../functions/Product/imagepath'
 
 const TextFields = () => {
-  const { inputVal, setInputVal } = useContext(UserContext)
+  const { inputVal, setInputVal, userData } = useContext(UserContext)
   const location = useLocation() // get the current location
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -64,7 +64,7 @@ const TextFields = () => {
         <div className=" flex flex-col font-extrabold my-2 justify-center items-center text-xl">
           <h1>User Image</h1>
           <img
-            src={`${APIURL}/${normalizePath(inputVal.image)}`}
+            src={`${APIURL}/${userData.imageurl}`}
             alt="profile"
             className=" w-24 self-center"
           />

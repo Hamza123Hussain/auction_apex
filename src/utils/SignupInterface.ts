@@ -5,6 +5,7 @@ export interface InputValues {
   Image: File | null
   image: string
   _id: string
+  bid: Number
 }
 
 export interface UserData {

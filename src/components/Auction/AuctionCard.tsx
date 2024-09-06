@@ -1,12 +1,9 @@
-import { useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { AuctionCardData } from '../../utils/AuctionInteface'
 import { APIURL } from '../../utils/SignupInterface'
+import { isAuctionStarted } from '../../functions/Auction/AuctionStatus'
 const AuctionCard = ({ auction }: { auction: AuctionCardData }) => {
-  const isAuctionStarted = (startDate: string) => {
-    const now = new Date()
-    const start = new Date(startDate)
-    return now >= start
-  }
+  const Location = useLocation()
   const Router = useNavigate()
   return (
     <div
@@ -56,14 +53,15 @@ const AuctionCard = ({ auction }: { auction: AuctionCardData }) => {
             ? `Highest Bidder: ${auction.highestBidder.username}`
             : 'No highest bidder yet'}
         </p>
-        {isAuctionStarted(auction.startDate) && (
-          <button
-            onClick={() => Router(`AuctionCard/${auction._id}`)}
-            className="mt-4 bg-electricBlue text-softWhite px-4 py-2 rounded-lg hover:bg-blue-700"
-          >
-            Start Bidding
-          </button>
-        )}
+        {isAuctionStarted(auction.startDate) &&
+          Location.pathname === '/AuctionCard/:AuctionID' && (
+            <button
+              onClick={() => Router(`AuctionCard/${auction._id}`)}
+              className="mt-4 bg-electricBlue text-softWhite px-4 py-2 rounded-lg hover:bg-blue-700"
+            >
+              Start Bidding
+            </button>
+          )}
       </div>
     </div>
   )

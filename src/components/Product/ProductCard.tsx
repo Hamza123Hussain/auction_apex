@@ -4,16 +4,20 @@ import { APIURL } from '../../utils/SignupInterface'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { statusColors } from './StatusColorObj'
 const ProductCard = ({ productdata }: { productdata: ProductCardData }) => {
+  console.log('PRODUCT ', productdata)
   const location = useLocation() // Get the current pathname
   const Router = useNavigate()
   return (
     <div className="rounded-lg  overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300 bg-darkCharcoal text-softWhite">
       <div className="relative">
-        <img
-          className=" w-full aspect-auto  object-cover"
-          src={`${APIURL}/${normalizePath(productdata.image)}`}
-          alt={productdata.productName}
-        />
+        <div className="  flex justify-center">
+          <img
+            className=" h-[50dvh]  md:h-[65dvh]  lg:w-[20vw]"
+            src={`${APIURL}/${normalizePath(productdata.image)}`}
+            alt={productdata.productName}
+          />
+        </div>
+
         <span
           className={`absolute top-2 right-2 px-3 py-1 rounded-lg text-sm font-bold uppercase ${
             statusColors[productdata.status]

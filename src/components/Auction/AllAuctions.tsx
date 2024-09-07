@@ -35,7 +35,7 @@ const AuctionsList = () => {
         setLoading(false)
       }
     }
-  }, [flag])
+  })
   if (loading)
     return (
       <div className=" min-h-screen flex justify-center items-center">
@@ -46,7 +46,7 @@ const AuctionsList = () => {
     return <div className="text-center text-brightRed">{error}</div>
   }
   return (
-    <div className="p-6 max-w-4xl mx-auto rounded-lg shadow-lg">
+    <div className="p-6 max-w-4xl mx-auto rounded-lg ">
       <h1 className="text-3xl font-bold text-green-400 mb-6">All Auctions</h1>
       {auctions.length === 0 ? (
         <p className="text-center text-gray-500">No auctions available</p>

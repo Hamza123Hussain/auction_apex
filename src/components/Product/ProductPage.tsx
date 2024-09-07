@@ -13,7 +13,7 @@ const ProductPage = ({ sellerID }: { sellerID: string }) => {
   useEffect(() => {
     const getProducts = async () => {
       const Data = sellerID
-        ? await GetUserProducts(sellerID)
+        ? await GetUserProducts('GuFl4e57s9YnpbAg3JMl8Qa4Z8x2')
         : await fetchAllProducts()
       if (Data) {
         SetProducts(Data)

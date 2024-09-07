@@ -44,7 +44,7 @@ const MakeAuctionForm = () => {
     }
   }
   return (
-    <div className="space-y-6 bg-gradient-to-t from-softWhite to-darkCharcoal p-6 rounded-lg shadow-md">
+    <div className="space-y-6 bg-gradient-to-t from-slate-800 to-darkCharcoal p-6 rounded-lg shadow-md">
       <h1 className="text-2xl font-bold text-darkCharcoal mb-4">
         Create Auction
       </h1>

@@ -1,6 +1,7 @@
 export const createProduct = async (
   productData: any,
-  imageFile: File | null
+  imageFile: File | null,
+  ID: any
 ) => {
   const formData = new FormData()
 
@@ -9,7 +10,7 @@ export const createProduct = async (
   formData.append('price', productData.price)
   formData.append('auctionEndDate', productData.auctionEndDate)
   formData.append('status', productData.status)
-  formData.append('sellerId', `yOmtiVVUX8ToaFDOnSNzHQXWOok1`)
+  formData.append('sellerId', ID)
 
   // Append image file if available
   if (imageFile) {

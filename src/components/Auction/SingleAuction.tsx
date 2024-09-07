@@ -69,7 +69,7 @@ const SingleAuction = () => {
     }
   }
   return (
-    <div className="flex flex-col mx-auto p-3 max-w-3xl">
+    <div className="flex flex-col mx-auto p-3 max-w-3xl rounded-lg">
       <div className="sm:w-1/2 mx-auto mb-6">
         {auctiondata && <AuctionCard auction={auctiondata} />}
       </div>

@@ -20,7 +20,7 @@ const App = () => {
   const renderRoute = (Component: React.ElementType) =>
     userData._id ? <AuctionsList /> : <Component />
   return (
-    <div className="App flex flex-col min-h-screen bg-slate-900">
+    <div className="App flex flex-col min-h-screen bg-softWhite">
       <Navbar />
       <main className="flex-grow p-4 my-10">
         <Routes>
@@ -29,7 +29,10 @@ const App = () => {
           <Route path="/register" element={renderRoute(Signup)} />
           <Route path="/ResetPass" element={renderRoute(ResetPassword)} />
           <Route path="/AddProduct" element={<ProductAddForm />} />
-          <Route path="/Profile" element={<Profile />} />
+          <Route
+            path="/Profile"
+            element={userData._id ? <Profile /> : <AuctionsList />}
+          />
           <Route
             path="/dashboard"
             element={userData._id ? <Dashboard /> : <AuctionsList />}

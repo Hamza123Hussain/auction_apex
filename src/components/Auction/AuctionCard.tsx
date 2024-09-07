@@ -13,15 +13,15 @@ const AuctionCard = ({ auction }: { auction: AuctionCardData }) => {
       <div className="relative">
         <img
           src={
-            auction.product?.image
+            !auction.product?.image
               ? 'https://jang.com.pk/assets/uploads/updates/2024-08-31/19584_8076291_Hania-Aamir_updates.jpg'
               : `${APIURL}/${auction.product?.image}`
           }
           alt={auction.product?.productName}
-          className=" w-fit"
+          className=" h-[50dvh] w-full"
         />
         {!Location.pathname.startsWith('/AuctionCard') && (
-          <div className="absolute top-0 right-0 p-2">
+          <div className="absolute -top-2 right-0 p-2 mb-2">
             <span
               className={`px-3 py-1 rounded-lg text-sm font-bold uppercase ${
                 isAuctionStarted(auction.startDate)

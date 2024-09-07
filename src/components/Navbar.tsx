@@ -18,7 +18,7 @@ const Navbar = () => {
       {!userData._id ? (
         <a
           href="/Login"
-          className="bg-brightCoral mt-4 mb-2 px-2 text-softWhite  rounded- hover:bg-brightRed"
+          className="bg-brightCoral mt-4 mb-2 px-4 text-softWhite  rounded-lg hover:bg-brightRed"
         >
           Sign In
         </a>
